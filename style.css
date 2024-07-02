@@ -500,12 +500,14 @@ nav .fa-solid {
   }
 
   .header-text {
-    margin-top: 100%;
+    margin-top: 110%;
     font-size: 20px;
     line-height: 150%;
     margin-right: 100%;
-    margin-left: -10%;
+    margin-left: -15%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
+
 
   .header-text h1 {
     font-size: 30px;
