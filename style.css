@@ -510,6 +510,11 @@ nav .fa-solid {
   .header-text h1 {
     font-size: 30px;
     line-height: 100%;
+    width: 1000%;
+  }
+
+  .header-text p {
+    width: 1000%;
   }
 
   nav .fa-solid {
