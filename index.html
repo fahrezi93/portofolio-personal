@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="fahrezi logos.png">
   <script src="https://kit.fontawesome.com/ace7c22f74.js" crossorigin="anonymous"></script>
+  <style>
+    #msg {
+      margin-top: 10px;
+      display: block;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
@@ -67,6 +74,7 @@
           <div class="tab-contents" id="education">
             <ul>
               <li><span>Universitas Sriwijaya</span><br> Teknik Informatika</li>
+              <li><span>Bangkit Academy 2024 Batch 2</span><br> 2024</li>
               <li><span>SMAIQU AL BAHJAH 2</span><br> 2019 - 2022</li>
               <li><span>SMPIQU AL BAHJAH 2</span><br> 2016 - 2019</li>
             </ul>
@@ -258,8 +266,8 @@
         <div class="contact-right">
           <form name="submit-to-google-sheet">
             <input type="text" name="Name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="Message" rows="6" placeholder="Your Massage"></textarea>
+            <input type="email" name="Email" placeholder="Your Email" required>
+            <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
             <button type="submit" class="btn btn2">Submit</button>
           </form>
           <span id="msg"></span>
@@ -301,21 +309,34 @@
 
   </script>
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwSzKFdyR9z58YnsJwhRo7DO1xjFUtXgd4VRWa5ITJ5l25mfqjOlcBfCsyavewlzTfvrA/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzlf5bVCrDCEPwXGJ8_ZJs70IumjPVFye0VzwZzmRM3Z6f1q1NR5M3qG_Q0hucpeUm77g/exec'
     const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
 
     form.addEventListener('submit', e => {
       e.preventDefault()
-      fetch(scriptURL, {method: 'POST', body: new FormData(form)})
+      // Show loading message
+      msg.innerHTML = "Please wait..."
+      msg.style.color = "#ffa500"
+      
+      fetch(scriptURL, { 
+        method: 'POST', 
+        body: new FormData(form),
+        mode: 'cors'
+      })
         .then(response => {
-          msg.innerHTML = "Message sent succesfully"
-          setTimeout(function () {
+          msg.innerHTML = "Message sent successfully!"
+          msg.style.color = "#00ff00"
+          setTimeout(function(){
             msg.innerHTML = ""
           }, 5000)
           form.reset()
         })
-        .catch(error => console.error('Error!', error.message))
+        .catch(error => {
+          console.error('Error!', error.message)
+          msg.innerHTML = "Something went wrong!"
+          msg.style.color = "#ff0000"
+        })
     })
   </script>
 
